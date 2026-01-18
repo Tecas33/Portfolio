@@ -1,2 +1,2 @@
-# Portfolio
-visualiza o meu protfolio como desenvolvedor Front\Back end.
+# Meu Portfólio
+Portfolio simples com projetos. Desenvolvido por Seu Nome.
