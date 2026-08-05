@@ -1,927 +1,424 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecas José | Full-Stack Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <style>
-        /* Animação personalizada para o carrossel de skills */
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tecas José — Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0E17;
+    --bg-alt: #10151F;
+    --bg-card: #141B29;
+    --line: rgba(231,233,240,0.09);
+    --text: #E7E9F0;
+    --text-dim: #8B93A7;
+    --text-faint: #57607A;
+    --accent: #5EEAD4;
+    --accent-dim: rgba(94,234,212,0.12);
+    --warm: #FBBF24;
+    --warm-dim: rgba(251,191,36,0.12);
+    --display: 'Space Grotesk', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --body: 'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent);color:var(--bg);}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
 
-            100% {
-                transform: translateX(-50%);
-            }
-        }
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,14,23,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:0.5px;}
+  .logo span{color:var(--text-faint);}
+  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:13px;color:var(--text-dim);}
+  .navlinks a:hover{color:var(--accent);}
+  @media(max-width:640px){.navlinks{display:none;}}
 
-        .animate-scroll {
-            display: flex;
-            width: max-content;
-            animation: scroll 20s linear infinite;
-        }
+  /* HERO */
+  header.hero{padding:88px 0 64px;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:var(--mono);font-size:12.5px;color:var(--warm);
+    letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--warm);box-shadow:0 0 8px var(--warm);}
+  h1{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-1px;
+    margin-bottom:16px;
+  }
+  h1 .accent{color:var(--accent);}
+  .role-tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px;}
+  .role-tags span{
+    font-family:var(--mono);font-size:12.5px;color:var(--text-dim);
+    border:1px solid var(--line);padding:5px 11px;border-radius:20px;
+  }
+  .lead{max-width:600px;color:var(--text-dim);font-size:16.5px;margin-bottom:34px;}
+  .lead strong{color:var(--text);font-weight:600;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .btn{
+    font-family:var(--mono);font-size:13.5px;padding:12px 22px;border-radius:8px;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary{background:var(--accent);color:#06110E;font-weight:600;}
+  .btn-primary:hover{background:#7FF3E2;}
+  .btn-ghost{border:1px solid var(--line);color:var(--text-dim);}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
 
-        .animate-scroll:hover {
-            animation-play-state: paused;
-        }
-    </style>
+  /* TIMEZONE SIGNATURE WIDGET */
+  .tz-widget{
+    margin-top:46px;border:1px solid var(--line);border-radius:14px;
+    background:linear-gradient(180deg, var(--bg-card), var(--bg-alt));
+    padding:22px 24px;
+  }
+  .tz-widget-head{
+    font-family:var(--mono);font-size:12px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;
+  }
+  .tz-row{display:flex;align-items:center;gap:0;}
+  .tz-col{flex:1;text-align:center;}
+  .tz-city{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:6px;}
+  .tz-time{font-family:var(--display);font-size:28px;font-weight:600;}
+  .tz-col.me .tz-time{color:var(--accent);}
+  .tz-arrow{
+    flex:0 0 auto;padding:0 18px;text-align:center;
+    font-family:var(--mono);font-size:11px;color:var(--warm);
+  }
+  .tz-bar{margin-top:16px;height:6px;border-radius:3px;background:var(--line);position:relative;overflow:hidden;}
+  .tz-bar-fill{position:absolute;left:0;top:0;bottom:0;width:33%;background:linear-gradient(90deg,var(--warm),var(--accent));border-radius:3px;}
+  .tz-caption{margin-top:10px;font-size:13px;color:var(--text-faint);}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-label{
+    font-family:var(--mono);font-size:12px;color:var(--text-faint);
+    text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;
+  }
+  h2{font-family:var(--display);font-weight:600;font-size:28px;margin-bottom:30px;}
+
+  /* ABOUT */
+  .about-text{color:var(--text-dim);font-size:16px;max-width:680px;}
+  .about-text strong{color:var(--text);font-weight:600;}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:640px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    border:1px solid var(--line);border-radius:12px;padding:18px 20px;
+    background:var(--bg-card);
+  }
+  .skill-card h3{
+    font-family:var(--mono);font-size:12.5px;color:var(--accent);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;
+  }
+  .skill-card p{color:var(--text-dim);font-size:14.5px;line-height:1.7;}
+  .skill-card.learning{border-color:var(--warm-dim);background:linear-gradient(180deg,var(--warm-dim),transparent 60%);}
+  .skill-card.learning h3{color:var(--warm);}
+
+  /* EXPERIENCE */
+  .exp-item{position:relative;padding-left:28px;margin-bottom:38px;border-left:1px solid var(--line);}
+  .exp-item:last-child{margin-bottom:0;}
+  .exp-item::before{
+    content:'';position:absolute;left:-5px;top:4px;
+    width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);
+  }
+  .exp-item.current::before{background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim);}
+  .exp-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:4px;}
+  .exp-role{font-family:var(--display);font-size:18.5px;font-weight:600;}
+  .exp-date{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;}
+  .exp-org{color:var(--accent);font-size:14px;font-weight:500;margin-bottom:12px;}
+  .exp-item ul{list-style:none;margin-bottom:12px;}
+  .exp-item li{color:var(--text-dim);font-size:14.5px;margin-bottom:6px;padding-left:16px;position:relative;}
+  .exp-item li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
+  .exp-stack{font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+  .exp-stack b{color:var(--text-dim);font-weight:500;}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media(max-width:800px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    border:1px solid var(--line);border-radius:12px;padding:20px;
+    background:var(--bg-card);display:flex;flex-direction:column;height:100%;
+    transition:border-color .2s;
+  }
+  .proj-card:hover{border-color:var(--accent);}
+  .proj-card h3{font-family:var(--display);font-size:17px;margin-bottom:8px;}
+  .proj-card p{color:var(--text-dim);font-size:13.5px;flex:1;margin-bottom:14px;}
+  .proj-stack{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-bottom:10px;}
+  .proj-link{font-family:var(--mono);font-size:12.5px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;}
+  .proj-link:hover{color:var(--accent);}
+
+  /* EDUCATION */
+  .edu-list{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;}
+  .edu-item{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);}
+  .edu-item:last-child{border-bottom:none;}
+  .edu-name{font-weight:500;}
+  .edu-org{color:var(--text-dim);font-size:14px;}
+  .edu-date{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;}
+  .lang-row{display:flex;gap:24px;flex-wrap:wrap;font-size:14.5px;color:var(--text-dim);margin-top:6px;}
+  .lang-row b{color:var(--text);}
+  .learning-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+  .learning-tags span{
+    font-family:var(--mono);font-size:12px;color:var(--warm);
+    border:1px solid var(--warm-dim);padding:5px 11px;border-radius:20px;
+  }
+
+  /* FOOTER */
+  footer{padding:60px 0 40px;text-align:center;}
+  footer h2{font-size:24px;}
+  footer p{color:var(--text-dim);margin-bottom:26px;}
+  .footer-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:30px;}
+  .footer-meta{font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+</style>
 </head>
+<body>
 
-<body class="bg-zinc-900 text-white font-sans selection:bg-orange-500 selection:text-white">
+<nav>
+  <div class="wrap">
+    <div class="logo">tecas<span>@</span>dev</div>
+    <div class="navlinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#stack">Stack</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#projectos">Projectos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
 
-    <header class="fixed w-full z-50 bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800">
-        <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-tighter">Tecas<span class="text-orange-500">.Dev</span></div>
-
-            <ul class="hidden md:flex gap-8 text-sm uppercase tracking-widest text-zinc-400">
-                <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                <li><a href="#about" class="hover:text-white transition">Sobre</a></li>
-                <li><a href="#projects" class="hover:text-white transition">Projetos</a></li>
-                <li><a href="#contact" class="hover:text-white transition">Contato</a></li>
-            </ul>
-
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
-                <i class="fa-solid fa-bars-staggered text-2xl"></i>
-            </button>
-        </nav>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800">
-            <ul class="flex flex-col p-6 gap-4 text-sm uppercase tracking-widest text-zinc-400">
-                <li><a href="#home" class="mobile-link hover:text-white transition">Home</a></li>
-                <li><a href="#about" class="mobile-link hover:text-white transition">Sobre</a></li>
-                <li><a href="#projects" class="mobile-link hover:text-white transition">Projetos</a></li>
-                <li><a href="#contact" class="mobile-link hover:text-white transition">Contato</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20">
-        <div class="relative w-48 h-48 mb-8">
-            <div class="absolute inset-0 bg-orange-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-            <img src="imag/Gemini_Generated_Image_bgvg5rbgvg5rbgvg.png" alt="Tecas José"
-                class="relative w-full h-full object-cover rounded-full border-4 border-zinc-800 shadow-2xl">
-        </div>
-
-        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
-            Olá, eu sou Tecas <br>
-            <span id="typing" class="text-orange-500"></span>
-        </h1>
-
-        <p class="text-zinc-400 max-w-2xl text-lg mb-8">
-            Desenvolvedor Full-Stack, focado em criar aplicações modernas com Laravel, React e Node.js.
-            Especialista em transformar ideias em produtos digitais.
-        </p>
-
-        <div class="flex gap-6 mb-12">
-            <a href="https://wa.me/244948008043"
-                class="text-3xl hover:text-orange-500 hover:-translate-y-1 transition transform"><i
-                    class="fa-brands fa-whatsapp"></i></a>
-            <a href="https://www.linkedin.com/in/tecas-jos%C3%A9-219379338/"
-                class="text-3xl hover:text-orange-500 hover:-translate-y-1 transition transform"><i
-                    class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/Tecas33"
-                class="text-3xl hover:text-orange-500 hover:-translate-y-1 transition transform"><i
-                    class="fa-brands fa-github"></i></a>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-4">
-            <a href="#contact"
-                class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold transition shadow-lg shadow-orange-500/20">Contactar
-                Agora</a>
-            <a href="#projects"
-                class="border border-zinc-700 hover:bg-zinc-800 px-8 py-3 rounded-full font-bold transition">Ver
-                Projetos</a>
-        </div>
-    </section>
-
-    <div class="bg-zinc-950 py-10 border-y border-zinc-800 overflow-hidden relative">
-        <div class="animate-scroll flex gap-12 items-center">
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-laravel text-red-500"></i> Laravel</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-react text-blue-400"></i> React</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-node-js text-green-500"></i> Node.js</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-js text-yellow-400"></i> JavaScript</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-solid fa-bolt text-yellow-500"></i> Livewire</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-php text-indigo-400"></i> PHP</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-solid fa-code text-cyan-400"></i> Tailwind</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-laravel text-red-500"></i> Laravel</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-react text-blue-400"></i> React</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-node-js text-green-500"></i> Node.js</span>
-            <span class="flex items-center gap-2 text-zinc-500 font-bold text-2xl uppercase"><i
-                    class="fa-brands fa-js text-yellow-400"></i> JavaScript</span>
-        </div>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Disponível de imediato · Contractor / Invoice</div>
+    <h1>Tecas José<br><span class="accent">Full-Stack Developer.</span></h1>
+    <div class="role-tags">
+      <span>React</span><span>Next.js</span><span>Node.js</span><span>Nest.js</span><span>Laravel</span><span>TypeScript</span>
+    </div>
+    <p class="lead">
+      <strong>3+ anos</strong> a construir aplicações web escaláveis — de sistemas corporativos a e-commerce.
+      Baseado em Luanda, Angola (GMT+1). Actualmente em estudo: <strong>AWS</strong> e a API da <strong>Claude (Anthropic)</strong>
+      para integrar IA generativa em produtos web.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:tecasjose4@gmail.com">Enviar email</a>
+      <a class="btn btn-ghost" href="https://github.com/Tecas33" target="_blank" rel="noopener">github.com/Tecas33</a>
+      <a class="btn btn-ghost" href="tel:+244948008043">+244 948-008-043</a>
     </div>
 
-
-
-
-
-
-
-
-    <section id="about" class="py-24 bg-zinc-900 border-t border-zinc-800">
-        <div class="max-w-6xl mx-auto px-6">
-
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Sobre Mim</h2>
-                <p class="text-orange-500 font-medium tracking-widest uppercase text-sm">Conheça a minha jornada como
-                    desenvolvedor Full-Stack</p>
-                <div class="w-20 h-1 bg-orange-500 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-
-                <div class="relative group" data-aos="fade-right">
-                    <div
-                        class="absolute -inset-4 bg-orange-500/10 rounded-2xl blur-xl group-hover:bg-orange-500/20 transition duration-500">
-                    </div>
-                    <div class="relative bg-zinc-800 p-3 rounded-2xl border border-zinc-700">
-                        <img src="imag/Gemini_Generated_Image_bgvg5rbgvg5rbgvg.png" alt="Foto de Tecas José"
-                            class="rounded-xl w-full h-[400px] object-cover grayscale hover:grayscale-0 transition duration-500">
-                    </div>
-                    <div class="absolute -bottom-6 -right-6 bg-orange-500 p-6 rounded-2xl shadow-xl hidden lg:block">
-                        <span class="block text-3xl font-black text-white">3+</span>
-                        <span class="text-xs font-bold text-orange-100 uppercase leading-none">Anos de
-                            <br>Experiência</span>
-                    </div>
-                </div>
-
-                <div class="space-y-6 text-zinc-400 text-lg leading-relaxed" data-aos="fade-left">
-                    <p>
-                        Olá! Eu sou <span class="text-white font-semibold">Ageu José Tecas</span>, apaixonado por
-                        transformar linhas de código em soluções digitais que impactam pessoas. Ao longo dos últimos 3
-                        anos, foquei em ganhar experiência prática criando interfaces modernas e sistemas dinâmicos.
-                    </p>
-                    <p>
-                        Minha stack principal envolve tecnologias de ponta como <span class="text-zinc-200">React.js,
-                        Laravel 12, Node.js, Express.js RESTful API, MySQL, MongoDB  e TypeScript</span>. Gosto de atuar em todas as camadas de um projeto,
-                        desde a modelagem de dados no <span class="text-zinc-200">MySQL</span> até o refinamento visual
-                        com <span class="text-zinc-200">Tailwind CSS</span>.
-                    </p>
-                    <p>
-                        Foco sempre em <span class="text-orange-500">performance, organização e experiência do
-                            utilizador</span>. Acredito que um bom software não deve apenas funcionar, mas sim
-                        proporcionar uma jornada fluida e eficiente para quem o utiliza.
-                    </p>
-
-                    <div class="flex flex-wrap gap-4 pt-6">
-                        <a href="CV Full-Stack_Devoloper.pdf"
-                            class="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-bold transition-all transform hover:-translate-y-1">
-                            <i class="fa-solid fa-file-pdf"></i> Download CV
-                        </a>
-                        <a href="#projects"
-                            class="flex items-center gap-2 border border-zinc-700 text-white hover:bg-zinc-800 px-6 py-3 rounded-xl font-bold transition-all">
-                            <span>&lt;/&gt;</span> Ver Projetos
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+    <div class="tz-widget">
+      <div class="tz-widget-head">Vantagem de fuso horário</div>
+      <div class="tz-row">
+        <div class="tz-col me">
+          <div class="tz-city">Luanda · GMT+1</div>
+          <div class="tz-time" id="tz-luanda">--:--</div>
         </div>
-    </section>
-
-    <section id="skills" class="py-24 bg-zinc-950 border-t border-zinc-900">
-        <div class="max-w-6xl mx-auto px-6">
-
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Soft Skills</h2>
-                <p class="text-orange-500 font-medium tracking-widest uppercase text-sm">Competências que me tornam um
-                    profissional completo</p>
-                <div class="w-16 h-1 bg-orange-500 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-
-                <div class="group bg-zinc-900 border border-zinc-800 p-8 rounded-2xl text-center transition-all duration-300 hover:border-orange-500/50 hover:bg-zinc-900/50 hover:-translate-y-2"
-                    data-aos="zoom-in">
-                    <div
-                        class="w-16 h-16 mx-auto mb-6 bg-zinc-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
-                        <i class="fa-solid fa-comments text-2xl text-orange-500 group-hover:text-white"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-sm md:text-base">Boa Comunicação</h4>
-                </div>
-
-                <div class="group bg-zinc-900 border border-zinc-800 p-8 rounded-2xl text-center transition-all duration-300 hover:border-orange-500/50 hover:bg-zinc-900/50 hover:-translate-y-2"
-                    data-aos="zoom-in" data-aos-delay="100">
-                    <div
-                        class="w-16 h-16 mx-auto mb-6 bg-zinc-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
-                        <i class="fa-solid fa-users text-2xl text-orange-500 group-hover:text-white"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-sm md:text-base">Trabalho em Equipe</h4>
-                </div>
-
-                <div class="group bg-zinc-900 border border-zinc-800 p-8 rounded-2xl text-center transition-all duration-300 hover:border-orange-500/50 hover:bg-zinc-900/50 hover:-translate-y-2"
-                    data-aos="zoom-in" data-aos-delay="200">
-                    <div
-                        class="w-16 h-16 mx-auto mb-6 bg-zinc-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
-                        <i class="fa-solid fa-lightbulb text-2xl text-orange-500 group-hover:text-white"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-sm md:text-base">Proatividade</h4>
-                </div>
-
-                <div class="group bg-zinc-900 border border-zinc-800 p-8 rounded-2xl text-center transition-all duration-300 hover:border-orange-500/50 hover:bg-zinc-900/50 hover:-translate-y-2"
-                    data-aos="zoom-in" data-aos-delay="300">
-                    <div
-                        class="w-16 h-16 mx-auto mb-6 bg-zinc-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
-                        <i class="fa-solid fa-tasks text-2xl text-orange-500 group-hover:text-white"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-sm md:text-base">Organização</h4>
-                </div>
-
-                <div class="group bg-zinc-900 border border-zinc-800 p-8 rounded-2xl text-center transition-all duration-300 hover:border-orange-500/50 hover:bg-zinc-900/50 hover:-translate-y-2"
-                    data-aos="zoom-in" data-aos-delay="400">
-                    <div
-                        class="w-16 h-16 mx-auto mb-6 bg-zinc-800 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
-                        <i class="fa-solid fa-brain text-2xl text-orange-500 group-hover:text-white"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-sm md:text-base">Resolução de Problemas</h4>
-                </div>
-
-            </div>
+        <div class="tz-arrow">4h<br>à frente</div>
+        <div class="tz-col">
+          <div class="tz-city">Brasília · GMT-3</div>
+          <div class="tz-time" id="tz-brasilia">--:--</div>
         </div>
-    </section>
+      </div>
+      <div class="tz-bar"><div class="tz-bar-fill"></div></div>
+      <div class="tz-caption">Entregas prontas antes das dailies em Brasília começarem.</div>
+    </div>
+  </div>
+</header>
 
+<section id="sobre">
+  <div class="wrap">
+    <div class="section-label">01 — Sobre</div>
+    <h2>Perfil</h2>
+    <p class="about-text">
+      Desenvolvedor Full-Stack com foco em <strong>React, Next.js, Node.js, Nest.js e Laravel</strong>,
+      com experiência a entregar desde landing pages de alta conversão até sistemas corporativos completos
+      e plataformas de e-commerce. Trabalho remoto, modelo <strong>contractor/invoice</strong>, com rotina
+      já adaptada a equipas distribuídas em fusos horários diferentes. Em desenvolvimento contínuo —
+      actualmente a estudar <strong>AWS</strong> e a explorar a <strong>API da Claude (Anthropic)</strong>
+      para integração de IA generativa em aplicações web.
+    </p>
+  </div>
+</section>
 
-    <section id="Hability" class="py-24 bg-zinc-900">
-        <div class="max-w-6xl mx-auto px-6">
+<section id="stack">
+  <div class="wrap">
+    <div class="section-label">02 — Stack</div>
+    <h2>Competências técnicas</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Frontend</h3>
+        <p>React.js · Next.js · TypeScript · JavaScript (ES6+) · Tailwind CSS · HTML5 · Bootstrap 5</p>
+      </div>
+      <div class="skill-card">
+        <h3>Backend</h3>
+        <p>Node.js · Nest.js · Express · Laravel (PHP 8) · Filament PHP · Livewire · JWT · Prisma ORM</p>
+      </div>
+      <div class="skill-card">
+        <h3>Bases de dados</h3>
+        <p>PostgreSQL · MySQL · MongoDB · SQL · SQLite</p>
+      </div>
+      <div class="skill-card">
+        <h3>Testes & ferramentas</h3>
+        <p>Jest · React Testing Library · Insomnia · Git/GitHub · Docker · Vercel · Railway · Figma</p>
+      </div>
+      <div class="skill-card learning" style="grid-column:1 / -1;">
+        <h3>Em estudo</h3>
+        <p>AWS · Claude API (Anthropic) / IA generativa · GraphQL · Micro-frontends · CI/CD</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Hard Skills</h2>
-                <p class="text-orange-500 font-medium tracking-widest uppercase text-sm">Tecnologias que domino e
-                    utilizo em meus projetos</p>
-                <div class="w-16 h-1 bg-orange-500 mx-auto mt-4 rounded-full"></div>
-            </div>
+<section id="experiencia">
+  <div class="wrap">
+    <div class="section-label">03 — Experiência</div>
+    <h2>Percurso profissional</h2>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="exp-item current">
+      <div class="exp-head">
+        <div class="exp-role">Desenvolvedor Full-Stack (Freelancer)</div>
+        <div class="exp-date">Nov 2024 — Presente</div>
+      </div>
+      <div class="exp-org">Remoto</div>
+      <ul>
+        <li>Desenvolvimento e entrega de aplicações web completas e landing pages de alta conversão com React, Next.js, Node.js e Laravel.</li>
+        <li>Aplicação de arquitectura limpa, componentes reutilizáveis e pipelines de CI/CD via Vercel e Railway em todos os projectos.</li>
+      </ul>
+      <div class="exp-stack"><b>Stack:</b> React · Next.js · TypeScript · Node.js · Nest.js · Laravel · Tailwind CSS · Prisma ORM · PostgreSQL</div>
+    </div>
 
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-red-500/10 text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all">
-                            <i class="fa-brands fa-laravel text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Laravel</h4>
-                            <p class="text-zinc-500 text-xs">Backend / PHP</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-red-500 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
+    <div class="exp-item">
+      <div class="exp-head">
+        <div class="exp-role">Desenvolvedor Full-Stack</div>
+        <div class="exp-date">Nov 2023 — Nov 2024</div>
+      </div>
+      <div class="exp-org">Tecnologias Arnoldo · Híbrido</div>
+      <ul>
+        <li>Desenvolvimento e manutenção dos sistemas SmartShare e iCompliance com Laravel, Livewire e Filament PHP.</li>
+        <li>Criação de uma biblioteca de componentes reutilizáveis, reduzindo o tempo de entrega de novas funcionalidades em cerca de 30%.</li>
+        <li>Construção de dashboards administrativos com controlo granular de permissões, filtros dinâmicos e fluxos de CRUD.</li>
+        <li>Definição de contratos de API e padronização de endpoints junto à equipa de backend, eliminando erros críticos de integração.</li>
+      </ul>
+      <div class="exp-stack"><b>Stack:</b> Laravel · Livewire · Filament PHP · React · TypeScript · Node.js · PostgreSQL · MySQL</div>
+    </div>
 
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 group-hover:bg-blue-400 group-hover:text-white transition-all">
-                            <i class="fa-brands fa-react text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">React.js</h4>
-                            <p class="text-zinc-500 text-xs">Frontend / Library</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-blue-400 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
+    <div class="exp-item">
+      <div class="exp-head">
+        <div class="exp-role">Desenvolvedor Front-End · Junior Designer</div>
+        <div class="exp-date">Mar 2022 — Abr 2023</div>
+      </div>
+      <div class="exp-org">Remoto</div>
+      <ul>
+        <li>Entrega de interfaces e landing pages com 100% de fidelidade visual a protótipos Figma, com foco em performance e SEO.</li>
+        <li>Correcção de bugs críticos de interface e usabilidade, aumentando directamente a estabilidade das aplicações em produção.</li>
+      </ul>
+      <div class="exp-stack"><b>Stack:</b> HTML5 · CSS3 · JavaScript · Figma · Git</div>
+    </div>
+  </div>
+</section>
 
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-400 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-code text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Tailwind</h4>
-                            <p class="text-zinc-500 text-xs">Frontend / CSS</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-cyan-400 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
+<section id="projectos">
+  <div class="wrap">
+    <div class="section-label">04 — Projectos</div>
+    <h2>Projectos em destaque</h2>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <h3>SmartStok Full-Stack</h3>
+        <p>Sistema de controlo de inventário com API RESTful, testes de integração automatizados e painel React responsivo.</p>
+        <div class="proj-stack">React · Laravel · MySQL · Tailwind</div>
+        <a class="proj-link" href="https://github.com/Tecas33/Smart-StockFront" target="_blank" rel="noopener">↗ ver no GitHub</a>
+      </div>
+      <div class="proj-card">
+        <h3>Lumina Store</h3>
+        <p>E-commerce full-stack com autenticação JWT, painel admin, gestão de inventário e backend escalável com Prisma ORM.</p>
+        <div class="proj-stack">React · Node.js · Prisma · PostgreSQL</div>
+        <a class="proj-link" href="https://github.com/Tecas33/lumina-store" target="_blank" rel="noopener">↗ ver no GitHub</a>
+      </div>
+      <div class="proj-card">
+        <h3>iPhone 17 Pro Frontend</h3>
+        <p>Landing page premium com animações suaves, layout responsivo e deploy live — foco em conversão e UX.</p>
+        <div class="proj-stack">React · TypeScript · Tailwind CSS</div>
+        <a class="proj-link" href="https://iphone17pro-app.vercel.app" target="_blank" rel="noopener">↗ ver live</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-500 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                            <i class="fa-brands fa-bootstrap text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Bootstrap 5</h4>
-                            <p class="text-zinc-500 text-xs">Frontend / CSS</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-indigo-500 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-green-500/10 text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all">
-                            <i class="fa-brands fa-node-js text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Node.js</h4>
-                            <p class="text-zinc-500 text-xs">Backend / JS</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-green-500 rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-purple-500/10 text-purple-500 group-hover:bg-purple-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-key text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">JWT Auth</h4>
-                            <p class="text-zinc-500 text-xs">Security / Tokens</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-orange-500/10 text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-cloud-arrow-down text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">RESTful API</h4>
-                            <p class="text-zinc-500 text-xs">Web Services</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-orange-500 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-orange-500/10 text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-layer-group text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Filament</h4>
-                            <p class="text-zinc-500 text-xs">Admin Panels</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-orange-500 rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="500">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-600/10 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i class="fa-brands fa-js text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">TypeScript</h4>
-                            <p class="text-zinc-500 text-xs">Frontend / Logic</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-blue-600 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="600">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-pink-500/10 text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-bolt text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Livewire</h4>
-                            <p class="text-zinc-500 text-xs">Fullstack / Laravel</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-pink-500 rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up" data-aos-delay="700">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-sky-600/10 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-database text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">MySQL</h4>
-                            <p class="text-zinc-500 text-xs">Database / SQL</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-sky-600 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-green-500/10 text-green-500 group-hover:bg-green-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-leaf text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">MongoDB</h4>
-                            <p class="text-zinc-500 text-xs">NoSQL Database</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-green-500 rounded-full" style="width: 70%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-500/10 text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-database text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">PostgreSQL</h4>
-                            <p class="text-zinc-500 text-xs">Relational DB</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-blue-500 rounded-full" style="width: 75%"></div>
-                    </div>
-                </div>
-
-                <div class="group bg-zinc-800/50 border border-zinc-700 p-6 rounded-2xl transition-all hover:bg-zinc-800 hover:border-orange-500/50"
-                    data-aos="fade-up">
-                    <div class="flex items-center gap-4">
-                        <div
-                            class="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-500/10 text-gray-400 group-hover:bg-white group-hover:text-black transition-all">
-                            <i class="fa-solid fa-server text-2xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-bold">Express.js</h4>
-                            <p class="text-zinc-500 text-xs">Node Framework</p>
-                        </div>
-                    </div>
-                    <div class="mt-5 h-1.5 w-full bg-zinc-700 rounded-full overflow-hidden">
-                        <div class="h-full bg-white rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-            </div>
+<section id="formacao">
+  <div class="wrap">
+    <div class="section-label">05 — Formação</div>
+    <h2>Formação & certificações</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Front-End Developer</div>
+          <div class="edu-org">DevClub</div>
         </div>
-    </section>
-
-
-
-    <section id="projects" class="py-24 bg-zinc-950 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Meus Projetos</h2>
-                <p class="text-orange-500 font-medium tracking-widest uppercase text-sm">Aplicações reais e estudos de
-                    caso</p>
-                <div class="w-16 h-1 bg-orange-500 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <article
-                    class="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-500"
-                    data-aos="fade-up">
-                    <div class="relative overflow-hidden">
-                        <img src="imag/fruit.png" alt="FreshFruit"
-                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-white">FreshFruit</h3>
-                            <span
-                                class="text-[10px] bg-orange-500/10 text-orange-500 px-2 py-1 rounded-full font-bold uppercase">Landing
-                                Page</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-4 line-clamp-2">Vendas de frutas frescas com interface
-                            moderna e foco em conversão.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">React.js</span>
-                            <span
-                                class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">Styled-components</span>
-                        </div>
-                        <a href="https://freshfruitapp.vercel.app/" target="_blank"
-                            class="block text-center py-2 rounded-xl border border-zinc-700 text-white font-semibold hover:bg-orange-500 hover:border-orange-500 transition-all">Ver
-                            Projeto <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
-                    </div>
-                </article>
-
-                <article
-                    class="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-500"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative overflow-hidden">
-                        <img src="imag/iphone.png" alt="iPhone 17Pro"
-                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-white">iPhone 17Pro</h3>
-                            <span
-                                class="text-[10px] bg-blue-500/10 text-blue-500 px-2 py-1 rounded-full font-bold uppercase">Interactive
-                                UI</span>
-                        </div>
-                        <p class="text-zinc-400 text-sm mb-4 line-clamp-2">Apresentação elegante com animações e troca
-                            de cores dinâmica.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">React.js</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">Tailwind CSS</span>
-                        </div>
-                        <a href="https://iphone17pro-app.vercel.app/" target="_blank"
-                            class="block text-center py-2 rounded-xl border border-zinc-700 text-white font-semibold hover:bg-orange-500 hover:border-orange-500 transition-all">Ver
-                            Projeto <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
-                    </div>
-                </article>
-
-                <article
-                    class="group bg-zinc-900 border border-orange-500/30 rounded-2xl overflow-hidden hover:border-orange-500 transition-all duration-500 shadow-lg shadow-orange-500/5"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative overflow-hidden">
-                        <img src="imag/smart.png" alt="SmartStock"
-                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
-                        <div
-                            class="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase shadow-xl">
-                            Full Stack</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">SmartStock</h3>
-                        <p class="text-zinc-400 text-sm mb-4 line-clamp-2">Gestão de estoque complexa com dashboard e
-                            API RESTful integrada.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span
-                                class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded font-mono text-orange-400 font-bold">Laravel</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">React</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">MySQL</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <a href="https://github.com/Tecas33/Smart-Stock-Front.git" target="_blank"
-                                class="text-[12px] text-center py-2 rounded-lg bg-zinc-800 text-zinc-300 hover:text-white transition-all"><i
-                                    class="fa-brands fa-github mr-1"></i> Front</a>
-                            <a href="https://github.com/Tecas33/Smart-Stock-Beck.git" target="_blank"
-                                class="text-[12px] text-center py-2 rounded-lg bg-zinc-800 text-zinc-300 hover:text-white transition-all"><i
-                                    class="fa-brands fa-github mr-1"></i> Back</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article
-                    class="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-500"
-                    data-aos="fade-up">
-                    <div class="relative overflow-hidden">
-                        <img src="imag/previsao.png" alt="Previsão Clima"
-                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Previsão Tempo</h3>
-                        <p class="text-zinc-400 text-sm mb-4 line-clamp-2">Consumo de API em tempo real para dados
-                            climáticos mundiais.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">JS Vanilla</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">API</span>
-                        </div>
-                        <a href="https://previsao-clima-gules.vercel.app/" target="_blank"
-                            class="block text-center py-2 rounded-xl border border-zinc-700 text-white font-semibold hover:bg-orange-500 hover:border-orange-500 transition-all">Aceder
-                            App</a>
-                    </div>
-                </article>
-
-                <article
-                    class="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-500"
-                    data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative overflow-hidden">
-                        <img src="imag/task.png" alt="TaskFlow"
-                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">TaskFlow</h3>
-                        <p class="text-zinc-400 text-sm mb-4 line-clamp-2">Sistema avançado de produtividade com gestão
-                            de estados.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">Laravel</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">MySQL</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">Blade</span>
-                        </div>
-                        <a href="https://github.com/Tecas33/Dashboard.git" target="_blank"
-                            class="block text-center py-2 rounded-xl border border-zinc-700 text-white font-semibold hover:bg-orange-500 hover:border-orange-500 transition-all"><i
-                                class="fa-brands fa-github mr-2"></i> Código Fonte</a>
-                    </div>
-                </article>
-
-                <article
-                    class="group bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-500"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative overflow-hidden">
-                        <img src="imag/tradutor.png" alt="Tradutor"
-                            class="w-full h-48 object-cover group-hover:scale-110 transition duration-500 grayscale group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-2">Tradutor Smart</h3>
-                        <p class="text-zinc-400 text-sm mb-4 line-clamp-2">Aplicação multi-idiomas focada em UX e
-                            performance rápida.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">HTML5</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">Tailwind</span>
-                            <span class="text-[11px] text-zinc-300 bg-zinc-800 px-2 py-1 rounded">i18n</span>
-                        </div>
-                        <a href="https://tradutor-mu-ebon.vercel.app/" target="_blank"
-                            class="block text-center py-2 rounded-xl border border-zinc-700 text-white font-semibold hover:bg-orange-500 hover:border-orange-500 transition-all">Testar
-                            Agora</a>
-                    </div>
-                </article>
-
-            </div>
+        <div class="edu-date">Jan 2026</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Full-Stack Web Development</div>
+          <div class="edu-org">Tecnologias Arnoldo</div>
         </div>
-    </section>
-
-
-
-    <section id="contact" class="py-24 bg-zinc-900 border-t border-zinc-800">
-        <div class="max-w-6xl mx-auto px-6">
-
-            <div
-                class="bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl flex flex-col lg:flex-row">
-
-                <div class="lg:w-2/5 bg-gradient-to-br from-orange-600 to-orange-400 p-12 text-white flex flex-col justify-between"
-                    data-aos="fade-right">
-                    <div>
-                        <div
-                            class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-8 backdrop-blur-sm">
-                            <i class="fa-solid fa-paper-plane text-3xl"></i>
-                        </div>
-                        <h3 class="text-3xl font-black mb-6 leading-tight">Vamos tirar a sua ideia do papel?</h3>
-                        <p class="text-orange-100 text-lg leading-relaxed">
-                            Estou disponível para projetos freelance, vagas remotas e oportunidades como
-                            <span class="font-bold text-white">Full-Stack Developer</span>.
-                        </p>
-                    </div>
-
-                    <div class="mt-12">
-                        <p class="text-sm uppercase tracking-widest font-bold text-orange-200 mb-6">Siga-me nas redes
-                        </p>
-                        <div class="flex gap-4">
-                            <a href="https://wa.me/244948008043" target="_blank"
-                                class="w-12 h-12 bg-white/10 hover:bg-white text-white hover:text-orange-500 rounded-xl flex items-center justify-center transition-all">
-                                <i class="fa-brands fa-whatsapp text-xl"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/tecas-jos%C3%A9-219379338/" target="_blank"
-                                class="w-12 h-12 bg-white/10 hover:bg-white text-white hover:text-orange-500 rounded-xl flex items-center justify-center transition-all">
-                                <i class="fa-brands fa-linkedin text-xl"></i>
-                            </a>
-                            <a href="https://github.com/Tecas33" target="_blank"
-                                class="w-12 h-12 bg-white/10 hover:bg-white text-white hover:text-orange-500 rounded-xl flex items-center justify-center transition-all">
-                                <i class="fa-brands fa-github text-xl"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:w-3/5 p-12 bg-zinc-950" data-aos="fade-left">
-                    <div class="mb-12">
-                        <h2 class="text-3xl font-extrabold text-white mb-2">Contactar</h2>
-                        <p class="text-zinc-500">Interessado em trabalhar comigo? Vamos conversar.</p>
-                    </div>
-
-                    <div class="space-y-8">
-                        <div
-                            class="group flex items-center gap-6 p-4 rounded-2xl border border-transparent hover:border-zinc-800 hover:bg-zinc-900/50 transition-all">
-                            <div
-                                class="w-14 h-14 bg-zinc-900 rounded-xl flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-zinc-500 text-sm uppercase tracking-wider">Email</h4>
-                                <p class="text-white font-bold text-lg">tecasjose4@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="group flex items-center gap-6 p-4 rounded-2xl border border-transparent hover:border-zinc-800 hover:bg-zinc-900/50 transition-all">
-                            <div
-                                class="w-14 h-14 bg-zinc-900 rounded-xl flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
-                                <i class="fa-brands fa-whatsapp text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-zinc-500 text-sm uppercase tracking-wider">WhatsApp</h4>
-                                <p class="text-white font-bold text-lg">+244 948 00 80 43</p>
-                            </div>
-                        </div>
-
-                        <div
-                            class="group flex items-center gap-6 p-4 rounded-2xl border border-transparent hover:border-zinc-800 hover:bg-zinc-900/50 transition-all">
-                            <div
-                                class="w-14 h-14 bg-zinc-900 rounded-xl flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
-                                <i class="fa-solid fa-location-dot text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-zinc-500 text-sm uppercase tracking-wider">Localização</h4>
-                                <p class="text-white font-bold text-lg">Luanda, Angola (Remoto)</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 pt-8 border-t border-zinc-900">
-                        <a href="https://wa.me/244948008043" target="_blank"
-                            class="inline-flex items-center gap-3 text-orange-500 font-bold hover:text-orange-400 transition-colors">
-                            Enviar mensagem direta <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
+        <div class="edu-date">2024</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Técnico em Informática</div>
+          <div class="edu-org">Instituto Politécnico</div>
         </div>
-    </section>
+        <div class="edu-date">2022 — 2027 (em curso)</div>
+      </div>
+    </div>
+    <div class="lang-row">
+      <div><b>Português</b> — Nativo</div>
+      <div><b>Inglês</b> — Intermediário (leitura técnica)</div>
+    </div>
+  </div>
+</section>
 
+<footer id="contacto">
+  <div class="wrap">
+    <div class="section-label" style="text-align:center;">06 — Contacto</div>
+    <h2>Vamos trabalhar juntos.</h2>
+    <p>Disponível de imediato · Remoto · Contractor / Invoice</p>
+    <div class="footer-actions">
+      <a class="btn btn-primary" href="mailto:tecasjose4@gmail.com">tecasjose4@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+244948008043">+244 948-008-043</a>
+      <a class="btn btn-ghost" href="https://github.com/Tecas33" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <div class="footer-meta">Luanda, Angola · GMT+1</div>
+  </div>
+</footer>
 
+<script>
+  function updateClocks(){
+    const now = new Date();
+    const opts = {hour:'2-digit', minute:'2-digit', hour12:false};
+    try{
+      document.getElementById('tz-luanda').textContent = now.toLocaleTimeString('pt-PT', {...opts, timeZone:'Africa/Luanda'});
+      document.getElementById('tz-brasilia').textContent = now.toLocaleTimeString('pt-PT', {...opts, timeZone:'America/Sao_Paulo'});
+    }catch(e){}
+  }
+  updateClocks();
+  setInterval(updateClocks, 30000);
+</script>
 
-    <!-- FOOTER -->
-    <footer class="bg-zinc-950 pt-20 pb-10 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
-                <div class="space-y-6">
-                    <h1 class="text-2xl font-black text-white tracking-tighter">
-                        Tecas.<span class="text-orange-500">Dev</span>
-                    </h1>
-                    <p class="text-zinc-500 leading-relaxed">
-                        Transformando ideias em aplicações modernas, escaláveis e funcionais. Focado em Laravel e
-                        ecossistemas JavaScript.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/Tecas33" class="text-zinc-600 hover:text-white transition-colors"><i
-                                class="fa-brands fa-github text-xl"></i></a>
-                        <a href="https://www.linkedin.com/in/tecas-jos%C3%A9-219379338/"
-                            class="text-zinc-600 hover:text-white transition-colors"><i
-                                class="fa-brands fa-linkedin text-xl"></i></a>
-                        <a href="https://www.instagram.com/tecas.jose/"
-                            class="text-zinc-600 hover:text-white transition-colors"><i
-                                class="fa-brands fa-instagram text-xl"></i></a>
-                    </div>
-                </div>
-
-                <div>
-                    <h2 class="text-white font-bold mb-6 uppercase text-xs tracking-[0.2em]">Navegação</h2>
-                    <ul class="space-y-4">
-                        <li><a href="#home"
-                                class="text-zinc-500 hover:text-orange-500 transition-colors flex items-center gap-2"><span
-                                    class="w-1 h-1 bg-orange-500 rounded-full"></span> Home</a></li>
-                        <li><a href="#about"
-                                class="text-zinc-500 hover:text-orange-500 transition-colors flex items-center gap-2"><span
-                                    class="w-1 h-1 bg-orange-500 rounded-full"></span> Sobre</a></li>
-                        <li><a href="#Hability"
-                                class="text-zinc-500 hover:text-orange-500 transition-colors flex items-center gap-2"><span
-                                    class="w-1 h-1 bg-orange-500 rounded-full"></span> Habilidades</a></li>
-                        <li><a href="#projects"
-                                class="text-zinc-500 hover:text-orange-500 transition-colors flex items-center gap-2"><span
-                                    class="w-1 h-1 bg-orange-500 rounded-full"></span> Projetos</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h2 class="text-white font-bold mb-6 uppercase text-xs tracking-[0.2em]">Contacto</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-brands fa-whatsapp text-orange-500 mt-1"></i>
-                            <a href="https://wa.me/244948008043" target="_blank"
-                                class="text-zinc-500 hover:text-white transition-colors">+244 948 00 80 43</a>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-envelope text-orange-500 mt-1"></i>
-                            <span class="text-zinc-500">tecasjose4@gmail.com</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-zinc-900/50 p-6 rounded-2xl border border-zinc-800">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="relative flex h-3 w-3">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                        </span>
-                        <span class="text-green-500 text-xs font-bold uppercase tracking-widest">Disponível</span>
-                    </div>
-                    <p class="text-zinc-400 text-sm italic">
-                        "Atualmente aceitando novos projetos freelance e parcerias estratégicas."
-                    </p>
-                </div>
-
-            </div>
-
-            <div class="border-t border-zinc-900 pt-10 flex flex-col md:flex-row justify-center items-center gap-4">
-                <p class="text-zinc-600 text-sm">
-                    © 2026 <span class="text-zinc-400 font-semibold text-white">Tecas.Dev</span> — Todos os direitos
-                    reservados.
-                </p>
-            </div>
-
-        </div>
-    </footer>
-
-    <!-- SCRIPTS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Menu-Dropdow -->
-    <script>
-        let menu = document.querySelector('.menu-dropdown');
-        let icon = document.getElementById('menuIcon');
-
-        function btn() {
-            menu.classList.toggle('open');
-            const ter = menu.classList.contains('open');
-
-            icon.className = ter ? "fa-solid fa-xmark" : "fa-solid fa-bars";
-        }
-    </script>
-    <script>
-        AOS.init({ duration: 1500, once: true });
-
-
-
-        new Typed("#typing", {
-            strings: ["Full-Stack Developer", "Especialista em UI Responsiva"],
-            typeSpeed: 70, backSpeed: 50, loop: true
-        });
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.querySelectorAll('.skill-card .progress').forEach(bar => {
-                        bar.style.width = bar.dataset.value;
-                    });
-                }
-            });
-        });
-        observer.observe(document.querySelector('.skills'));
-    </script>
-
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        // Função para alternar o menu
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Fechar o menu ao clicar em qualquer link (para saltar para a seção)
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    </script>
 </body>
-
 </html>
