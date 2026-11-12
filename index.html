@@ -2,423 +2,326 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tecas José — Full-Stack Developer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tecas José — Software Engineer</title>
+<meta name="description" content="Software Engineer Full-Stack em Luanda (GMT+1). Backend, APIs REST, Laravel, Node.js, React e CI/CD. Disponível para trabalho remoto.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #0A0E17;
-    --bg-alt: #10151F;
-    --bg-card: #141B29;
-    --line: rgba(231,233,240,0.09);
-    --text: #E7E9F0;
-    --text-dim: #8B93A7;
-    --text-faint: #57607A;
-    --accent: #5EEAD4;
-    --accent-dim: rgba(94,234,212,0.12);
-    --warm: #FBBF24;
-    --warm-dim: rgba(251,191,36,0.12);
-    --display: 'Space Grotesk', sans-serif;
-    --mono: 'JetBrains Mono', monospace;
-    --body: 'Inter', sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--body);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{background:var(--accent);color:var(--bg);}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+:root{
+  --bg:#EEF1F6;--surface:#FFFFFF;--ink:#0B1B33;--dim:#4A5870;--faint:#6B7891;
+  --line:rgba(11,27,51,.13);--brand:#2447F5;--brand-soft:rgba(36,71,245,.09);--on-brand:#fff;--signal:#E4572E;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1220;--surface:#121B2E;--ink:#EAF0FB;--dim:#A3B1CB;--faint:#7685A3;
+  --line:rgba(234,240,251,.12);--brand:#7C9BFF;--brand-soft:rgba(124,155,255,.12);--on-brand:#0B1220;--signal:#FF8A63;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1220;--surface:#121B2E;--ink:#EAF0FB;--dim:#A3B1CB;--faint:#7685A3;--line:rgba(234,240,251,.12);--brand:#7C9BFF;--brand-soft:rgba(124,155,255,.12);--on-brand:#0B1220;--signal:#FF8A63;color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:4px}
+::selection{background:var(--brand);color:var(--on-brand)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
 
-  /* NAV */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(10,14,23,0.85);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
-  .logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:0.5px;}
-  .logo span{color:var(--text-faint);}
-  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:13px;color:var(--text-dim);}
-  .navlinks a:hover{color:var(--accent);}
-  @media(max-width:640px){.navlinks{display:none;}}
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.3px}
+.brand i{font-style:normal;color:var(--brand)}
+.links{display:flex;gap:26px;font-size:14.5px;color:var(--dim)}
+.links a{padding:4px 0;border-bottom:2px solid transparent}
+.links a:hover{color:var(--ink);border-color:var(--brand)}
+@media(max-width:700px){.links{gap:16px;font-size:13.5px}.links a:nth-child(n+4){display:none}}
 
-  /* HERO */
-  header.hero{padding:88px 0 64px;border-bottom:1px solid var(--line);}
-  .eyebrow{
-    font-family:var(--mono);font-size:12.5px;color:var(--warm);
-    letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--warm);box-shadow:0 0 8px var(--warm);}
-  h1{
-    font-family:var(--display);font-weight:700;
-    font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-1px;
-    margin-bottom:16px;
-  }
-  h1 .accent{color:var(--accent);}
-  .role-tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 26px;}
-  .role-tags span{
-    font-family:var(--mono);font-size:12.5px;color:var(--text-dim);
-    border:1px solid var(--line);padding:5px 11px;border-radius:20px;
-  }
-  .lead{max-width:600px;color:var(--text-dim);font-size:16.5px;margin-bottom:34px;}
-  .lead strong{color:var(--text);font-weight:600;}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
-  .btn{
-    font-family:var(--mono);font-size:13.5px;padding:12px 22px;border-radius:8px;
-    display:inline-flex;align-items:center;gap:8px;
-  }
-  .btn-primary{background:var(--accent);color:#06110E;font-weight:600;}
-  .btn-primary:hover{background:#7FF3E2;}
-  .btn-ghost{border:1px solid var(--line);color:var(--text-dim);}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+/* hero */
+.hero{padding:84px 0 72px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:44px}}
+.avail{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:500;color:var(--dim);border:1px solid var(--line);background:var(--surface);padding:6px 14px 6px 12px;border-radius:99px;margin-bottom:26px}
+.avail::before{content:'';width:8px;height:8px;border-radius:50%;background:#16A34A;box-shadow:0 0 0 4px rgba(22,163,74,.18)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(44px,7vw,80px);line-height:.98;letter-spacing:-2.5px;margin-bottom:22px}
+.role{font-family:var(--display);font-weight:600;font-size:clamp(18px,2.2vw,23px);color:var(--brand);margin-bottom:18px;letter-spacing:-.2px}
+.lead{font-size:17.5px;color:var(--dim);max-width:520px;margin-bottom:32px}
+.lead b{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{font-weight:600;font-size:15px;padding:13px 24px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);transition:transform .15s,border-color .15s}
+.btn:hover{border-color:var(--brand);transform:translateY(-2px)}
+.btn.p{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
 
-  /* TIMEZONE SIGNATURE WIDGET */
-  .tz-widget{
-    margin-top:46px;border:1px solid var(--line);border-radius:14px;
-    background:linear-gradient(180deg, var(--bg-card), var(--bg-alt));
-    padding:22px 24px;
-  }
-  .tz-widget-head{
-    font-family:var(--mono);font-size:12px;color:var(--text-faint);
-    text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;
-  }
-  .tz-row{display:flex;align-items:center;gap:0;}
-  .tz-col{flex:1;text-align:center;}
-  .tz-city{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:6px;}
-  .tz-time{font-family:var(--display);font-size:28px;font-weight:600;}
-  .tz-col.me .tz-time{color:var(--accent);}
-  .tz-arrow{
-    flex:0 0 auto;padding:0 18px;text-align:center;
-    font-family:var(--mono);font-size:11px;color:var(--warm);
-  }
-  .tz-bar{margin-top:16px;height:6px;border-radius:3px;background:var(--line);position:relative;overflow:hidden;}
-  .tz-bar-fill{position:absolute;left:0;top:0;bottom:0;width:33%;background:linear-gradient(90deg,var(--warm),var(--accent));border-radius:3px;}
-  .tz-caption{margin-top:10px;font-size:13px;color:var(--text-faint);}
+/* architecture diagram (signature element) */
+.arch{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 24px 60px -30px rgba(11,27,51,.35)}
+.arch-t{display:flex;justify-content:space-between;font-size:13px;color:var(--faint);margin-bottom:16px;font-weight:500}
+.row{display:grid;gap:10px}
+.r3{grid-template-columns:repeat(3,1fr)}
+.node{border:1.5px solid var(--line);border-radius:10px;padding:10px 8px;text-align:center;font-size:13.5px;font-weight:600;background:var(--bg)}
+.node small{display:block;font-weight:400;font-size:11.5px;color:var(--faint)}
+.node.core{background:var(--brand);border-color:var(--brand);color:var(--on-brand);padding:14px}
+.node.core small{color:var(--on-brand);opacity:.85}
+.node.data{border-style:dashed;border-color:var(--brand)}
+.link{height:22px;width:2px;background:var(--brand);margin:0 auto;opacity:.55;position:relative}
+.link::after{content:'';position:absolute;bottom:-1px;left:-4px;border:5px solid transparent;border-top:6px solid var(--brand);border-bottom:0}
+.pipe{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+.pipe-t{font-size:12.5px;color:var(--faint);margin-bottom:10px;font-weight:500}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.step{font-size:12px;text-align:center;padding:8px 4px;border-radius:8px;background:var(--brand-soft);font-weight:500;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;right:-6px;top:50%;width:6px;height:2px;background:var(--signal)}
 
-  section{padding:64px 0;border-bottom:1px solid var(--line);}
-  section:last-of-type{border-bottom:none;}
-  .section-label{
-    font-family:var(--mono);font-size:12px;color:var(--text-faint);
-    text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;
-  }
-  h2{font-family:var(--display);font-weight:600;font-size:28px;margin-bottom:30px;}
+/* sections */
+section{padding:76px 0;border-bottom:1px solid var(--line)}
+.sh{display:grid;grid-template-columns:240px 1fr;gap:40px}
+@media(max-width:800px){.sh{grid-template-columns:1fr;gap:22px}}
+h2{font-family:var(--display);font-weight:700;font-size:32px;letter-spacing:-.8px;line-height:1.15}
+.sh>div:first-child p{margin-top:10px;font-size:14.5px;color:var(--faint)}
+.prose{color:var(--dim);font-size:17px;max-width:640px}
+.prose p+p{margin-top:16px}
+.prose b{color:var(--ink);font-weight:600}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+@media(max-width:600px){.metrics{grid-template-columns:1fr}}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.metric b{display:block;font-family:var(--display);font-size:38px;line-height:1;letter-spacing:-1px;color:var(--brand);margin-bottom:8px}
+.metric span{font-size:14px;color:var(--dim);line-height:1.45;display:block}
 
-  /* ABOUT */
-  .about-text{color:var(--text-dim);font-size:16px;max-width:680px;}
-  .about-text strong{color:var(--text);font-weight:600;}
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:600px){.stack{grid-template-columns:1fr}}
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.grp h3{font-family:var(--display);font-size:17px;margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chips span{font-size:13.5px;padding:4px 11px;border-radius:7px;background:var(--brand-soft);font-weight:500}
+.chips span.learn{background:transparent;border:1px dashed var(--signal);color:var(--signal)}
 
-  /* SKILLS */
-  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-  @media(max-width:640px){.skills-grid{grid-template-columns:1fr;}}
-  .skill-card{
-    border:1px solid var(--line);border-radius:12px;padding:18px 20px;
-    background:var(--bg-card);
-  }
-  .skill-card h3{
-    font-family:var(--mono);font-size:12.5px;color:var(--accent);
-    text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;
-  }
-  .skill-card p{color:var(--text-dim);font-size:14.5px;line-height:1.7;}
-  .skill-card.learning{border-color:var(--warm-dim);background:linear-gradient(180deg,var(--warm-dim),transparent 60%);}
-  .skill-card.learning h3{color:var(--warm);}
+/* experience */
+.tl{position:relative}
+.job{display:grid;grid-template-columns:150px 1fr;gap:28px;padding-bottom:42px;position:relative}
+.job:last-child{padding-bottom:0}
+@media(max-width:700px){.job{grid-template-columns:1fr;gap:6px}}
+.when{font-size:14px;color:var(--faint);font-weight:500;padding-top:5px}
+.job h3{font-family:var(--display);font-size:21px;letter-spacing:-.3px;line-height:1.25}
+.org{color:var(--brand);font-weight:600;font-size:15px;margin:3px 0 14px}
+.job ul{list-style:none}
+.job li{color:var(--dim);font-size:15.5px;margin-bottom:9px;padding-left:20px;position:relative}
+.job li::before{content:'';position:absolute;left:0;top:.7em;width:8px;height:2px;background:var(--brand)}
+.job li b{color:var(--ink);font-weight:600}
+.job .tech{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.job .tech span{font-size:12.5px;color:var(--faint);border:1px solid var(--line);padding:2px 9px;border-radius:6px}
 
-  /* EXPERIENCE */
-  .exp-item{position:relative;padding-left:28px;margin-bottom:38px;border-left:1px solid var(--line);}
-  .exp-item:last-child{margin-bottom:0;}
-  .exp-item::before{
-    content:'';position:absolute;left:-5px;top:4px;
-    width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);
-  }
-  .exp-item.current::before{background:var(--accent);box-shadow:0 0 0 4px var(--accent-dim);}
-  .exp-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:4px;}
-  .exp-role{font-family:var(--display);font-size:18.5px;font-weight:600;}
-  .exp-date{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;}
-  .exp-org{color:var(--accent);font-size:14px;font-weight:500;margin-bottom:12px;}
-  .exp-item ul{list-style:none;margin-bottom:12px;}
-  .exp-item li{color:var(--text-dim);font-size:14.5px;margin-bottom:6px;padding-left:16px;position:relative;}
-  .exp-item li::before{content:'—';position:absolute;left:0;color:var(--text-faint);}
-  .exp-stack{font-family:var(--mono);font-size:12px;color:var(--text-faint);}
-  .exp-stack b{color:var(--text-dim);font-weight:500;}
+/* projects */
+.projs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:700px){.projs{grid-template-columns:1fr}}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.proj:hover{transform:translateY(-3px);border-color:var(--brand)}
+.proj.feat{grid-column:1/-1;background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.proj.feat p,.proj.feat .tag,.proj.feat .tech{color:var(--on-brand)}
+.proj.feat .tech span{background:rgba(255,255,255,.16);color:var(--on-brand)}
+.tag{font-size:13px;font-weight:600;color:var(--signal);margin-bottom:6px}
+.proj h3{font-family:var(--display);font-size:23px;letter-spacing:-.4px;margin-bottom:8px}
+.proj p{color:var(--dim);font-size:15px;flex:1;margin-bottom:16px;max-width:680px}
+.proj .tech{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.proj .tech span{font-size:12.5px;background:var(--brand-soft);padding:2px 9px;border-radius:6px;font-weight:500}
+.proj a.go{font-weight:600;font-size:14.5px;text-decoration:underline;text-underline-offset:4px}
+.proj.feat a.go{color:var(--on-brand)}
 
-  /* PROJECTS */
-  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  @media(max-width:800px){.proj-grid{grid-template-columns:1fr;}}
-  .proj-card{
-    border:1px solid var(--line);border-radius:12px;padding:20px;
-    background:var(--bg-card);display:flex;flex-direction:column;height:100%;
-    transition:border-color .2s;
-  }
-  .proj-card:hover{border-color:var(--accent);}
-  .proj-card h3{font-family:var(--display);font-size:17px;margin-bottom:8px;}
-  .proj-card p{color:var(--text-dim);font-size:13.5px;flex:1;margin-bottom:14px;}
-  .proj-stack{font-family:var(--mono);font-size:11.5px;color:var(--accent);margin-bottom:10px;}
-  .proj-link{font-family:var(--mono);font-size:12.5px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;}
-  .proj-link:hover{color:var(--accent);}
+/* education */
+.edu{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.edu b{font-family:var(--display);font-size:18px}
+.edu span{color:var(--faint);font-size:14.5px}
+.langs{display:flex;gap:28px;flex-wrap:wrap;margin-top:18px;color:var(--dim);font-size:15px}
+.langs b{color:var(--ink)}
 
-  /* EDUCATION */
-  .edu-list{display:flex;flex-direction:column;gap:16px;margin-bottom:28px;}
-  .edu-item{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);}
-  .edu-item:last-child{border-bottom:none;}
-  .edu-name{font-weight:500;}
-  .edu-org{color:var(--text-dim);font-size:14px;}
-  .edu-date{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);white-space:nowrap;}
-  .lang-row{display:flex;gap:24px;flex-wrap:wrap;font-size:14.5px;color:var(--text-dim);margin-top:6px;}
-  .lang-row b{color:var(--text);}
-  .learning-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
-  .learning-tags span{
-    font-family:var(--mono);font-size:12px;color:var(--warm);
-    border:1px solid var(--warm-dim);padding:5px 11px;border-radius:20px;
-  }
-
-  /* FOOTER */
-  footer{padding:60px 0 40px;text-align:center;}
-  footer h2{font-size:24px;}
-  footer p{color:var(--text-dim);margin-bottom:26px;}
-  .footer-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:30px;}
-  .footer-meta{font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+/* contact */
+.contact{padding:84px 0 48px;text-align:left}
+.contact h2{font-size:clamp(34px,5vw,56px);letter-spacing:-1.5px;margin-bottom:14px;max-width:640px}
+.contact p{color:var(--dim);font-size:17.5px;margin-bottom:30px;max-width:520px}
+.foot{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13.5px;color:var(--faint)}
+.clocks b{color:var(--ink);font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="logo">tecas<span>@</span>dev</div>
-    <div class="navlinks">
-      <a href="#sobre">Sobre</a>
-      <a href="#stack">Stack</a>
-      <a href="#experiencia">Experiência</a>
-      <a href="#projectos">Projectos</a>
-      <a href="#contacto">Contacto</a>
+<nav><div class="wrap">
+  <a class="brand" href="#top">Tecas<i>.</i>José</a>
+  <div class="links"><a href="#sobre">Sobre</a><a href="#stack">Stack</a><a href="#experiencia">Experiência</a><a href="#projectos">Projectos</a><a href="#contacto">Contacto</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <div class="avail">Disponível de imediato · Contractor / Invoice</div>
+    <h1>Tecas José</h1>
+    <div class="role">Software Engineer — Full-Stack, Backend e APIs REST</div>
+    <p class="lead"><b>4+ anos</b> a desenhar e entregar aplicações web escaláveis: plataformas SaaS, sistemas de gestão e e-commerce, do levantamento de requisitos ao deploy em produção.</p>
+    <div class="cta">
+      <a class="btn p" href="mailto:tecasjose4@gmail.com">Enviar email</a>
+      <a class="btn" href="https://github.com/Tecas33" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="#projectos">Ver projectos</a>
     </div>
   </div>
-</nav>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Disponível de imediato · Contractor / Invoice</div>
-    <h1>Tecas José<br><span class="accent">Full-Stack Developer.</span></h1>
-    <div class="role-tags">
-      <span>React</span><span>Next.js</span><span>Node.js</span><span>Nest.js</span><span>Laravel</span><span>TypeScript</span>
+  <div class="arch" role="img" aria-label="Diagrama da arquitectura da plataforma ALMOFADA e do pipeline de deploy">
+    <div class="arch-t"><span>Arquitectura · ALMOFADA</span><span>Laravel + React</span></div>
+    <div class="row r3">
+      <div class="node">Admin<small>Filament PHP</small></div>
+      <div class="node">Professores<small>React</small></div>
+      <div class="node">Encarregados<small>React</small></div>
     </div>
-    <p class="lead">
-      <strong>3+ anos</strong> a construir aplicações web escaláveis — de sistemas corporativos a e-commerce.
-      Baseado em Luanda, Angola (GMT+1). Actualmente em estudo: <strong>AWS</strong> e a API da <strong>Claude (Anthropic)</strong>
-      para integrar IA generativa em produtos web.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="mailto:tecasjose4@gmail.com">Enviar email</a>
-      <a class="btn btn-ghost" href="https://github.com/Tecas33" target="_blank" rel="noopener">github.com/Tecas33</a>
-      <a class="btn btn-ghost" href="tel:+244948008043">+244 948-008-043</a>
-    </div>
-
-    <div class="tz-widget">
-      <div class="tz-widget-head">Vantagem de fuso horário</div>
-      <div class="tz-row">
-        <div class="tz-col me">
-          <div class="tz-city">Luanda · GMT+1</div>
-          <div class="tz-time" id="tz-luanda">--:--</div>
-        </div>
-        <div class="tz-arrow">4h<br>à frente</div>
-        <div class="tz-col">
-          <div class="tz-city">Brasília · GMT-3</div>
-          <div class="tz-time" id="tz-brasilia">--:--</div>
-        </div>
-      </div>
-      <div class="tz-bar"><div class="tz-bar-fill"></div></div>
-      <div class="tz-caption">Entregas prontas antes das dailies em Brasília começarem.</div>
+    <div class="link"></div>
+    <div class="node core">API REST · Laravel<small>Autenticação e acesso por perfis</small></div>
+    <div class="link"></div>
+    <div class="node data">Base de dados relacional<small>MySQL · PostgreSQL</small></div>
+    <div class="pipe">
+      <div class="pipe-t">Deploy automático · iCompliance</div>
+      <div class="steps"><div class="step">push main</div><div class="step">Actions</div><div class="step">SSH + Rsync</div><div class="step">Produção</div></div>
     </div>
   </div>
-</header>
+</div></header>
 
-<section id="sobre">
-  <div class="wrap">
-    <div class="section-label">01 — Sobre</div>
-    <h2>Perfil</h2>
-    <p class="about-text">
-      Desenvolvedor Full-Stack com foco em <strong>React, Next.js, Node.js, Nest.js e Laravel</strong>,
-      com experiência a entregar desde landing pages de alta conversão até sistemas corporativos completos
-      e plataformas de e-commerce. Trabalho remoto, modelo <strong>contractor/invoice</strong>, com rotina
-      já adaptada a equipas distribuídas em fusos horários diferentes. Em desenvolvimento contínuo —
-      actualmente a estudar <strong>AWS</strong> e a explorar a <strong>API da Claude (Anthropic)</strong>
-      para integração de IA generativa em aplicações web.
-    </p>
-  </div>
-</section>
-
-<section id="stack">
-  <div class="wrap">
-    <div class="section-label">02 — Stack</div>
-    <h2>Competências técnicas</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h3>Frontend</h3>
-        <p>React.js · Next.js · TypeScript · JavaScript (ES6+) · Tailwind CSS · HTML5 · Bootstrap 5</p>
-      </div>
-      <div class="skill-card">
-        <h3>Backend</h3>
-        <p>Node.js · Nest.js · Express · Laravel (PHP 8) · Filament PHP · Livewire · JWT · Prisma ORM</p>
-      </div>
-      <div class="skill-card">
-        <h3>Bases de dados</h3>
-        <p>PostgreSQL · MySQL · MongoDB · SQL · SQLite</p>
-      </div>
-      <div class="skill-card">
-        <h3>Testes & ferramentas</h3>
-        <p>Jest · React Testing Library · Insomnia · Git/GitHub · Docker · Vercel · Railway · Figma</p>
-      </div>
-      <div class="skill-card learning" style="grid-column:1 / -1;">
-        <h3>Em estudo</h3>
-        <p>AWS · Claude API (Anthropic) / IA generativa · GraphQL · Micro-frontends · CI/CD</p>
-      </div>
+<section id="sobre"><div class="wrap sh">
+  <div><h2>Sobre</h2><p>Luanda, Angola · GMT+1</p></div>
+  <div>
+    <div class="prose">
+      <p>Engenharia de software é mais do que escrever código: é compreender o problema, tomar decisões técnicas fundamentadas e construir sistemas <b>fiáveis, escaláveis e fáceis de manter</b>.</p>
+      <p>Trabalho em todo o ciclo de desenvolvimento: requisitos, arquitectura, modelação de bases de dados, backend, APIs REST, frontend, CI/CD e produção. Valorizo fronteiras claras entre módulos, integridade dos dados e código sustentável.</p>
+      <p>Estou 4 horas à frente de Brasília, por isso consigo entregar antes das dailies das equipas no Brasil. Em estudo: <b>AWS</b>.</p>
+    </div>
+    <div class="metrics">
+      <div class="metric"><b>+60%</b><span>produtividade operacional, medida e confirmada no ALMOFADA</span></div>
+      <div class="metric"><b>~30%</b><span>menos tempo para entregar funcionalidades, com biblioteca de componentes</span></div>
+      <div class="metric"><b>4+</b><span>anos de experiência em projectos reais em produção</span></div>
     </div>
   </div>
-</section>
+</div></section>
 
-<section id="experiencia">
-  <div class="wrap">
-    <div class="section-label">03 — Experiência</div>
-    <h2>Percurso profissional</h2>
-
-    <div class="exp-item current">
-      <div class="exp-head">
-        <div class="exp-role">Desenvolvedor Full-Stack (Freelancer)</div>
-        <div class="exp-date">Nov 2024 — Presente</div>
-      </div>
-      <div class="exp-org">Remoto</div>
-      <ul>
-        <li>Desenvolvimento e entrega de aplicações web completas e landing pages de alta conversão com React, Next.js, Node.js e Laravel.</li>
-        <li>Aplicação de arquitectura limpa, componentes reutilizáveis e pipelines de CI/CD via Vercel e Railway em todos os projectos.</li>
-      </ul>
-      <div class="exp-stack"><b>Stack:</b> React · Next.js · TypeScript · Node.js · Nest.js · Laravel · Tailwind CSS · Prisma ORM · PostgreSQL</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-head">
-        <div class="exp-role">Desenvolvedor Full-Stack</div>
-        <div class="exp-date">Nov 2023 — Nov 2024</div>
-      </div>
-      <div class="exp-org">Tecnologias Arnoldo · Híbrido</div>
-      <ul>
-        <li>Desenvolvimento e manutenção dos sistemas SmartShare e iCompliance com Laravel, Livewire e Filament PHP.</li>
-        <li>Criação de uma biblioteca de componentes reutilizáveis, reduzindo o tempo de entrega de novas funcionalidades em cerca de 30%.</li>
-        <li>Construção de dashboards administrativos com controlo granular de permissões, filtros dinâmicos e fluxos de CRUD.</li>
-        <li>Definição de contratos de API e padronização de endpoints junto à equipa de backend, eliminando erros críticos de integração.</li>
-      </ul>
-      <div class="exp-stack"><b>Stack:</b> Laravel · Livewire · Filament PHP · React · TypeScript · Node.js · PostgreSQL · MySQL</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-head">
-        <div class="exp-role">Desenvolvedor Front-End · Junior Designer</div>
-        <div class="exp-date">Mar 2022 — Abr 2023</div>
-      </div>
-      <div class="exp-org">Remoto</div>
-      <ul>
-        <li>Entrega de interfaces e landing pages com 100% de fidelidade visual a protótipos Figma, com foco em performance e SEO.</li>
-        <li>Correcção de bugs críticos de interface e usabilidade, aumentando directamente a estabilidade das aplicações em produção.</li>
-      </ul>
-      <div class="exp-stack"><b>Stack:</b> HTML5 · CSS3 · JavaScript · Figma · Git</div>
-    </div>
+<section id="stack"><div class="wrap sh">
+  <div><h2>Stack</h2><p>Ferramentas que uso no dia a dia.</p></div>
+  <div class="stack">
+    <div class="grp"><h3>Backend e APIs</h3><div class="chips"><span>Node.js</span><span>NestJS</span><span>Express</span><span>Laravel (PHP 8)</span><span>Filament PHP</span><span>Livewire</span><span>APIs REST</span><span>JWT</span></div></div>
+    <div class="grp"><h3>Bases de dados</h3><div class="chips"><span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span><span>Prisma ORM</span><span>Eloquent ORM</span><span>Modelação relacional</span></div></div>
+    <div class="grp"><h3>Frontend</h3><div class="chips"><span>React</span><span>Next.js</span><span>TypeScript</span><span>JavaScript ES6+</span><span>Tailwind CSS</span><span>HTML5 / CSS3</span></div></div>
+    <div class="grp"><h3>DevOps e práticas</h3><div class="chips"><span>GitHub Actions</span><span>SSH / Rsync</span><span>Docker</span><span>Vercel</span><span>Railway</span><span>Jest</span><span>Testing Library</span><span>Scrum</span><span class="learn">AWS (em estudo)</span></div></div>
   </div>
-</section>
+</div></section>
 
-<section id="projectos">
-  <div class="wrap">
-    <div class="section-label">04 — Projectos</div>
-    <h2>Projectos em destaque</h2>
-    <div class="proj-grid">
-      <div class="proj-card">
-        <h3>SmartStok Full-Stack</h3>
-        <p>Sistema de controlo de inventário com API RESTful, testes de integração automatizados e painel React responsivo.</p>
-        <div class="proj-stack">React · Laravel · MySQL · Tailwind</div>
-        <a class="proj-link" href="https://github.com/Tecas33/Smart-StockFront" target="_blank" rel="noopener">↗ ver no GitHub</a>
+<section id="experiencia"><div class="wrap sh">
+  <div><h2>Experiência</h2><p>Percurso profissional.</p></div>
+  <div class="tl">
+    <article class="job">
+      <div class="when">Nov 2024 – Presente</div>
+      <div>
+        <h3>Software Engineer (Full-Stack)</h3><div class="org">Freelancer · Remoto</div>
+        <ul>
+          <li><b>ALMOFADA</b>: projectei a arquitectura de backend de uma plataforma de gestão de aulas ao domicílio, com portais separados para administração, professores e encarregados de educação.</li>
+          <li>Digitalizei processos em papel e automatizei fluxos administrativos, com <b>+60% de produtividade operacional</b>, medido e confirmado.</li>
+          <li>Conduzi o levantamento de requisitos e a comunicação directa com o cliente, do desenho à entrega.</li>
+          <li><b>WayToStore</b> (e-commerce): funcionalidades de backend e componentes da aplicação.</li>
+          <li>Estruturo pipelines de CI/CD com GitHub Actions.</li>
+        </ul>
+        <div class="tech"><span>Laravel</span><span>Filament PHP</span><span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Docker</span></div>
       </div>
-      <div class="proj-card">
-        <h3>Lumina Store</h3>
-        <p>E-commerce full-stack com autenticação JWT, painel admin, gestão de inventário e backend escalável com Prisma ORM.</p>
-        <div class="proj-stack">React · Node.js · Prisma · PostgreSQL</div>
-        <a class="proj-link" href="https://github.com/Tecas33/lumina-store" target="_blank" rel="noopener">↗ ver no GitHub</a>
+    </article>
+    <article class="job">
+      <div class="when">Mai 2023 – Nov 2024</div>
+      <div>
+        <h3>Desenvolvedor Full-Stack</h3><div class="org">Tecnologias Arnaldo · Híbrido</div>
+        <ul>
+          <li>Desenvolvi e mantive o <b>SmartShare</b> e o <b>iCompliance</b> com Laravel, Livewire e Filament PHP, incluindo dashboards com permissões granulares e auditoria de operações.</li>
+          <li>Configurei um pipeline <b>CI/CD com GitHub Actions (SSH + Rsync)</b> que faz o deploy a cada push na main: sincroniza ficheiros, instala dependências, faz o build e gera as caches do Laravel.</li>
+          <li>Criei uma biblioteca de componentes reutilizáveis que reduziu em ~30% o tempo de desenvolvimento.</li>
+          <li>Defini com a equipa de backend contratos de API e padrões de endpoints, reduzindo erros de integração.</li>
+        </ul>
+        <div class="tech"><span>Laravel</span><span>Livewire</span><span>Filament PHP</span><span>React</span><span>MySQL</span><span>GitHub Actions</span></div>
       </div>
-      <div class="proj-card">
-        <h3>iPhone 17 Pro Frontend</h3>
-        <p>Landing page premium com animações suaves, layout responsivo e deploy live — foco em conversão e UX.</p>
-        <div class="proj-stack">React · TypeScript · Tailwind CSS</div>
-        <a class="proj-link" href="https://iphone17pro-app.vercel.app" target="_blank" rel="noopener">↗ ver live</a>
+    </article>
+    <article class="job">
+      <div class="when">Mar 2022 – Abr 2023</div>
+      <div>
+        <h3>Desenvolvedor Front-End · Junior Designer</h3><div class="org">Remoto</div>
+        <ul>
+          <li>Entreguei landing pages e interfaces interactivas a partir de protótipos Figma, cumprindo prazos.</li>
+          <li>Corrigi bugs críticos de interface e usabilidade e apoiei a manutenção de sistemas existentes.</li>
+        </ul>
+        <div class="tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Figma</span><span>Git</span></div>
       </div>
-    </div>
+    </article>
   </div>
-</section>
+</div></section>
 
-<section id="formacao">
-  <div class="wrap">
-    <div class="section-label">05 — Formação</div>
-    <h2>Formação & certificações</h2>
-    <div class="edu-list">
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">Front-End Developer</div>
-          <div class="edu-org">DevClub</div>
-        </div>
-        <div class="edu-date">Jan 2026</div>
-      </div>
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">Full-Stack Web Development</div>
-          <div class="edu-org">Tecnologias Arnoldo</div>
-        </div>
-        <div class="edu-date">2024</div>
-      </div>
-      <div class="edu-item">
-        <div>
-          <div class="edu-name">Técnico em Informática</div>
-          <div class="edu-org">Instituto Politécnico</div>
-        </div>
-        <div class="edu-date">2022 — 2027 (em curso)</div>
-      </div>
-    </div>
-    <div class="lang-row">
-      <div><b>Português</b> — Nativo</div>
-      <div><b>Inglês</b> — Intermediário (leitura técnica)</div>
-    </div>
+<section id="projectos"><div class="wrap sh">
+  <div><h2>Projectos</h2><p>Trabalho de cliente e projectos próprios.</p></div>
+  <div class="projs">
+    <article class="proj feat">
+      <div class="tag">Projecto de cliente · Startup de educação</div>
+      <h3>ALMOFADA</h3>
+      <p>Plataforma de gestão de aulas ao domicílio que liga administradores, professores e encarregados de educação através de três portais independentes, com controlo de acesso por perfis. Substituiu processos em papel por fluxos digitais e permite aos pais acompanhar o progresso dos educandos.</p>
+      <div class="tech"><span>Laravel</span><span>Filament PHP</span><span>React</span><span>Tailwind CSS</span></div>
+    </article>
+    <article class="proj">
+      <div class="tag">Em desenvolvimento</div>
+      <h3>Lumina Store</h3>
+      <p>E-commerce full-stack com API REST em Node.js e Express, modelação com Prisma ORM, autenticação com rotas protegidas e CRUD de inventário.</p>
+      <div class="tech"><span>React</span><span>Node.js</span><span>Prisma</span></div>
+      <a class="go" href="https://github.com/Tecas33/lumina-store" target="_blank" rel="noopener">Ver no GitHub</a>
+    </article>
+    <article class="proj">
+      <div class="tag">Gestão de inventário</div>
+      <h3>SmartStok</h3>
+      <p>API RESTful em Laravel e MySQL com painel React responsivo e endpoints testados com Insomnia.</p>
+      <div class="tech"><span>React</span><span>Laravel</span><span>MySQL</span></div>
+      <a class="go" href="https://github.com/Tecas33/Smart-Stock-Front" target="_blank" rel="noopener">Ver no GitHub</a>
+    </article>
+    <article class="proj">
+      <div class="tag">Gestão de projectos</div>
+      <h3>TaskFlow</h3>
+      <p>Laravel, Eloquent e MySQL com relacionamentos estruturados. Deploy no Railway com variáveis de ambiente e HTTPS.</p>
+      <div class="tech"><span>Laravel</span><span>MySQL</span><span>Tailwind CSS</span></div>
+    </article>
+    <article class="proj">
+      <div class="tag">Landing page</div>
+      <h3>iPhone 17 Pro</h3>
+      <p>Página com animações suaves e layout responsivo, publicada online.</p>
+      <div class="tech"><span>React</span><span>TypeScript</span><span>Tailwind CSS</span></div>
+      <a class="go" href="https://iphone17pro-app.vercel.app" target="_blank" rel="noopener">Ver online</a>
+    </article>
   </div>
-</section>
+</div></section>
 
-<footer id="contacto">
-  <div class="wrap">
-    <div class="section-label" style="text-align:center;">06 — Contacto</div>
-    <h2>Vamos trabalhar juntos.</h2>
-    <p>Disponível  · Remoto ·</p>
-    <div class="footer-actions">
-      <a class="btn btn-primary" href="mailto:tecasjose4@gmail.com">tecasjose4@gmail.com</a>
-      <a class="btn btn-ghost" href="tel:+244948008043">+244 948-008-043</a>
-      <a class="btn btn-ghost" href="https://github.com/Tecas33" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-    <div class="footer-meta">Luanda, Angola · GMT+1</div>
+<section id="formacao"><div class="wrap sh">
+  <div><h2>Formação</h2></div>
+  <div>
+    <div class="edu"><div><b>Técnico em Informática</b><br><span>Instituto Politécnico</span></div><span>2022 – 2027 (em curso)</span></div>
+    <div class="langs"><div><b>Português</b> — nativo</div><div><b>Inglês</b> — intermédio (leitura e escrita)</div></div>
   </div>
-</footer>
+</div></section>
+
+<footer class="contact" id="contacto"><div class="wrap">
+  <h2>Vamos construir algo fiável.</h2>
+  <p>Disponível de imediato para trabalho remoto, em modelo contractor. Escreve-me com o contexto do projecto.</p>
+  <div class="cta">
+    <a class="btn p" href="mailto:tecasjose4@gmail.com">tecasjose4@gmail.com</a>
+    <a class="btn" href="tel:+244948008043">+244 948 008 043</a>
+    <a class="btn" href="https://github.com/Tecas33" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="foot">
+    <span>Luanda, Angola · GMT+1</span>
+    <span class="clocks">Luanda <b id="c1">--:--</b> · Brasília <b id="c2">--:--</b></span>
+  </div>
+</div></footer>
 
 <script>
-  function updateClocks(){
-    const now = new Date();
-    const opts = {hour:'2-digit', minute:'2-digit', hour12:false};
+(function(){
+  var o={hour:'2-digit',minute:'2-digit',hour12:false};
+  function t(){
+    var n=new Date();
     try{
-      document.getElementById('tz-luanda').textContent = now.toLocaleTimeString('pt-PT', {...opts, timeZone:'Africa/Luanda'});
-      document.getElementById('tz-brasilia').textContent = now.toLocaleTimeString('pt-PT', {...opts, timeZone:'America/Sao_Paulo'});
+      document.getElementById('c1').textContent=n.toLocaleTimeString('pt-PT',Object.assign({timeZone:'Africa/Luanda'},o));
+      document.getElementById('c2').textContent=n.toLocaleTimeString('pt-PT',Object.assign({timeZone:'America/Sao_Paulo'},o));
     }catch(e){}
   }
-  updateClocks();
-  setInterval(updateClocks, 30000);
+  t();setInterval(t,30000);
+})();
 </script>
-
 </body>
 </html>
